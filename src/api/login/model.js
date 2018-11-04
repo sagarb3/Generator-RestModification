@@ -3,7 +3,11 @@ import bcrypt from "bcrypt";
 import { env } from "../../config";
 const loginSchema = new Schema(
   {
-    username: {
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
       type: String,
       required: true
     },

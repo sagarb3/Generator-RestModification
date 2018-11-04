@@ -2,27 +2,23 @@ import { Router } from "express";
 import { middleware as query } from "querymen";
 import { middleware as body } from "bodymen";
 import { schema } from "./model";
-export Login, { schema } from "./model";
-import { authenticateUserCtrl, createUserCtrl } from "./controller";
+export PasswordReset, { schema } from "./model";
 import { asyncMiddleware } from "../../services/asynMiddleware";
+import { createResetPasswordLinkCtrl, verifyPasswordCtrl } from "./controller";
 const router = new Router();
-router.post(
-  "/auth",
-  body({
-    email: { type: String },
+router.get(
+  "/verify",
+  query({
+    uuid: { type: String },
     password: { type: String }
   }),
-  asyncMiddleware(authenticateUserCtrl)
+  asyncMiddleware(verifyPasswordCtrl)
 );
-
 router.post(
-  "/",
+  "/reset",
   body({
-    name: { type: String },
-    email: { type: String },
-    password: { type: String }
+    email: { type: String }
   }),
-  asyncMiddleware(createUserCtrl)
+  asyncMiddleware(createResetPasswordLinkCtrl)
 );
-
 export default router;

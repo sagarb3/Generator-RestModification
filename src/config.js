@@ -28,6 +28,12 @@ const config = {
     apiRoot: process.env.API_ROOT || "",
     masterKey: requireProcessEnv("MASTER_KEY"),
     jwtSecret: requireProcessEnv("JWT_SECRET"),
+    emailHost: requireProcessEnv("emailHost"),
+    emailPort: requireProcessEnv("emailPort"),
+    fromEmailId: requireProcessEnv("fromEmailId"),
+    emailUser: requireProcessEnv("emailUser"),
+    emailPassword: requireProcessEnv("emailPassword"),
+    domainName: "http://google.com",
     mongo: {
       options: {
         db: {
